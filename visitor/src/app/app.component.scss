@@ -1,6 +1,6 @@
-$primary : rgb(128, 128, 255);
+@import '../styles.scss';
 
 header {
-	background: $primary;
+	background: mat-color($primary);
 	padding: 2em;
 }
