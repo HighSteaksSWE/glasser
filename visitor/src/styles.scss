@@ -5,8 +5,8 @@
 @include mat-core();
 
 // Define your application's custom theme.
-$primary: mat-palette($mat-indigo);
-$accent:  mat-palette($mat-pink, A200, A100, A400);
+$primary: mat-palette($mat-blue);
+$accent:  mat-palette($mat-green, A200, A100, A400);
 $theme: mat-light-theme($primary, $accent);
 
 // Include theme styles for Angular Material components.
