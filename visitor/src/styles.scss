@@ -1,8 +1,7 @@
 // Import library functions for theme creation.
 @import '~@angular/material/theming';
 
-// Include non-theme styles for core.
-@include mat-core();
+
 
 // Define your application's custom theme.
 $primary: mat-palette($mat-blue);
@@ -17,8 +16,18 @@ $theme: mat-light-theme($primary, $accent);
 //     font-family: 'Work Sans', sans-serif;
 //    }
 
-// $primary : hex(#006AB5);
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$custom-typography: mat-typography-config(
+  $font-family: 'Work Sans',
+  $headline: mat-typography-level(24px, 30px, 600),
+  $body-1: mat-typography-level(16px, 24px, 400)
+);
 
-// @import 'gs-visitor-theme.scss';
+// Include non-theme styles for core.
+@include mat-core($custom-typography);
+
+// @include angular-material-typography($custom-typography);
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: /*"Work Sans",*/ "Helvetica Neue", sans-serif; }
