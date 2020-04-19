@@ -4,15 +4,21 @@
 </div>
 
 <div class="container">
-	<form>
-		<input type="" pattern="[0-9]{4}" maxlength="4">
-		<input type="submit" value="Enter code">
-	</form>
+	<mat-form-field appearance="outline">
+		<mat-label>Manual Entry</mat-label>
+		<input matInput required type="number" pattern="\d*" min="0" max="9999" maxlength="4">
+		<mat-icon matSuffix>money</mat-icon>
+		<mat-hint>Enter 4 Digit PIN found on Visitor Band</mat-hint>
+	</mat-form-field>
+	<button mat-flat-button color="primary" type="submit">Confirm</button>
 </div>
 
 <div class="container">
-	<form>
-	<input type="number" min="1" placeholder="# of visitors">
-	<input type="submit" value="Group visit">
-	</form>
+	<mat-form-field appearance="outline">
+		<mat-label>Group Visit</mat-label>
+		<input matInput required type="number" pattern="\d*" min="0" max="9999" maxlength="4">
+		<mat-icon matSuffix>people</mat-icon>
+		<mat-hint>Enter amount of people in group event</mat-hint>
+	</mat-form-field>
+	<button mat-flat-button color="primary" type="submit">Confirm</button>
 </div>

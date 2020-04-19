@@ -2,7 +2,6 @@
 @import '~@angular/material/theming';
 
 
-
 // Define your application's custom theme.
 $primary: mat-palette($mat-blue);
 $accent:  mat-palette($mat-green, A200, A100, A400);
@@ -31,3 +30,6 @@ $custom-typography: mat-typography-config(
 
 html, body { height: 100%; }
 body { margin: 0; font-family: /*"Work Sans",*/ "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
