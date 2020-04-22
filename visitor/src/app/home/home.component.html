@@ -4,13 +4,14 @@
 </div>
 
 <div class="container">
+	or 
 	<mat-form-field appearance="outline">
 		<mat-label>Manually enter PIN</mat-label>
 		<input matInput required ngModel name="manualEntry" id="manualEntry" #manualEntry="ngModel" type="text" pattern="\d{6}" maxlength="6">
 		<mat-icon matSuffix>money</mat-icon>
 		<mat-hint>Enter PIN found on Visitor Band</mat-hint>
 	</mat-form-field>
-	<button mat-flat-button color="primary" type="submit">Enter</button>
+	<button mat-flat-button color="primary" type="submit" class="submitButton">Enter</button>
 	<div class="alert alert-danger" *ngIf="manualEntry.touched && !manualEntry.valid">
 		<div *ngIf="manualEntry.errors.required">Please enter a number</div>
 		<div *ngIf="manualEntry.errors.pattern">A PIN consists of only 6 numbers (0–9).</div>
@@ -18,13 +19,14 @@
 </div>
 
 <div class="container">
+	or 
 	<mat-form-field appearance="outline">
-		<mat-label>Group visit (no bands)</mat-label>
+		<mat-label>Group visit</mat-label>
 		<input matInput required ngModel name="groupEntry" id="groupEntry" #groupEntry="ngModel" type="text" pattern="\d{2}" maxlength="2">
 		<mat-icon matSuffix>people</mat-icon>
 		<mat-hint>Enter number of attendees</mat-hint>
 	</mat-form-field>
-	<button mat-flat-button color="primary" type="submit">Enter</button>
+	<button mat-flat-button color="primary" type="submit" class="submitButton">Enter</button>
 	<div class="alert alert-danger" *ngIf="groupEntry.touched && !groupEntry.valid">
 		<div *ngIf="groupEntry.errors.required">Please enter a number</div>
 		<div *ngIf="groupEntry.errors.pattern">Value must be between 1-99</div>
