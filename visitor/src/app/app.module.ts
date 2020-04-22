@@ -14,6 +14,12 @@ import { MatInputModule } from '@angular/material/input';
 
 import { FormsModule } from '@angular/forms';
 
+// Firebase related imports
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { environment } from '../environments/environment';
+import { AgencyVisitorService } from './services/agency-visitor.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,9 +34,11 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
-  providers: [],
+  providers: [AgencyVisitorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
