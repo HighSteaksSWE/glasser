@@ -22,7 +22,7 @@
 	or 
 	<mat-form-field appearance="outline">
 		<mat-label>Group visit</mat-label>
-		<input matInput required ngModel name="groupEntry" id="groupEntry" #groupEntry="ngModel" type="text" pattern="\d{2}" maxlength="2">
+		<input matInput required ngModel name="groupEntry" id="groupEntry" #groupEntry="ngModel" type="text" pattern="[0-9]?[1-9]" maxlength="2">
 		<mat-icon matSuffix>people</mat-icon>
 		<mat-hint>Enter number of attendees</mat-hint>
 	</mat-form-field>
