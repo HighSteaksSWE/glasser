@@ -14,5 +14,8 @@ input {
 
 .container {
   padding: 2em;
-  background: mat-color($primary, lighter);
+  margin: 1em 0px 1em 0px;
+  background: whitesmoke;
+  border-radius: 2em;
+  text-align: center;
 }

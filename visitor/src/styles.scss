@@ -29,7 +29,9 @@ $custom-typography: mat-typography-config(
 // @include angular-material-typography($custom-typography);
 
 html, body { height: 100%; }
-body { margin: 0; font-family: /*"Work Sans",*/ "Helvetica Neue", sans-serif; }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+  font-family: /*"Work Sans",*/ "Helvetica Neue", sans-serif; 
+  max-width: 640px;
+  margin: auto;
+  background: mat-color($primary, lighter);
+}
