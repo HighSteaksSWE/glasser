@@ -33,6 +33,8 @@ export class HomeComponent {
   ID = 'A4'
   code: number;
   time = firebase.firestore.FieldValue.serverTimestamp();
+  groupNumber: number;
+  groupCode= 1000000;
 
 
   constructor(private afs: AngularFirestore) {}
@@ -42,8 +44,14 @@ export class HomeComponent {
     this.visits = this.agencyCollection.valueChanges();
   }
 
-  addVisit() {
+  addSingleVisit() {
     this.afs.collection('Agency1').add({'ID':this.ID, 'code': this.code, 'Time': this.time});
+  }
+
+  addGroupVisit(){
+      for (var _i = 0; _i < this.groupNumber; _i++) {
+        this.afs.collection('Agency1').add({'ID':this.ID, 'code': this.groupCode, 'Time': this.time});
+    }
   }
 
 }
