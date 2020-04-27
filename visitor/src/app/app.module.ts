@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 
 // Firebase related imports
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { AgencyVisitorService } from './services/agency-visitor.service';
 
