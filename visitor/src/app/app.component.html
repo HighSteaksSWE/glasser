@@ -4,4 +4,12 @@
 	</nav>
 </header>
 
+<div *ngIf="!loginSuccessful">
+	<app-login [app]="this"></app-login>
+</div>
+
+<div *ngIf="loginSuccessful">
+	<app-home [agency]="this.agency"></app-home>
+</div>
+
 <router-outlet></router-outlet>

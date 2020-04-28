@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div>
+  <mat-form-field appearance="outline">
+    <mat-label>Select an Agency</mat-label>
+    <mat-select [(ngModel)]="selectedAgency" name="agencySelect">
+      <mat-option *ngFor="let agency of agencies | async" [value]="agency">
+        ROOM:  {{ agency.room }} , {{ agency.name }}
+      </mat-option>
+    </mat-select>
+    <mat-icon matSuffix>home</mat-icon>
+    <mat-hint>Select an Agency to log visits to then press Confirm</mat-hint>
+  </mat-form-field>
+  <br />
+  <div *ngIf="selectedAgency != null">
+    <a mat-flat-button  (click)="successfulLogin()">Confirm</a>
+  </div>
+</div>

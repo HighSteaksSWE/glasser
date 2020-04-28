@@ -35,3 +35,7 @@ body {
   margin: auto;
   background: mat-color($primary, lighter);
 }
+
+mat-form-field {
+    width: 70%;
+}
