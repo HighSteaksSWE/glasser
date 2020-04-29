@@ -11,14 +11,14 @@
 	or 
 	<mat-form-field appearance="outline">
 		<mat-label>Manually enter PIN</mat-label>
-		<input matInput required ngModel name="manualEntry" [(ngModel)]="code" id="manualEntry" #manualEntry="ngModel" type="text" pattern="\d{6}" maxlength="6">
+		<input matInput required ngModel name="manualEntry" [(ngModel)]="code" id="manualEntry" #manualEntry="ngModel" type="text" pattern="\d{5}" maxlength="5">
 		<mat-icon matSuffix>money</mat-icon>
 		<mat-hint>Enter PIN found on Visitor Band</mat-hint>
 	</mat-form-field>
 	<button mat-flat-button color="primary" type="submit" class="submitButton" (click)="addSingleVisit()">Enter</button>
 	<div class="alert alert-danger" *ngIf="manualEntry.touched && !manualEntry.valid">
 		<div *ngIf="manualEntry.errors.required">Please enter a number</div>
-		<div *ngIf="manualEntry.errors.pattern">A PIN consists of only 6 numbers (0–9).</div>
+		<div *ngIf="manualEntry.errors.pattern">A PIN consists of only 5 numbers (0–9).</div>
 	</div>
 </div>
 
