@@ -12,7 +12,7 @@
 	<mat-form-field appearance="outline">
 		<mat-label>Manually enter PIN</mat-label>
 		<input matInput required ngModel name="manualEntry" [(ngModel)]="code" id="manualEntry" #manualEntry="ngModel" type="text" pattern="\d{5}" maxlength="5">
-		<mat-icon matSuffix>money</mat-icon>
+		<mat-icon matSuffix>dialpad</mat-icon>
 		<mat-hint>Enter PIN found on Visitor Band</mat-hint>
 	</mat-form-field>
 	<button mat-flat-button color="primary" type="submit" class="submitButton" (click)="addSingleVisit()">Enter</button>
