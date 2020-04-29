@@ -1,9 +1,3 @@
-<header>
-	<nav>
-		Visit tracker
-	</nav>
-</header>
-
 <!--
 	Shows the login component if the user has not logged in
 		When the user logs in:
@@ -11,6 +5,11 @@
 			2. Press Confirm -> Change the 'loginSuccesful' variable to true, store selected agency info in 'agency'
 -->
 <div *ngIf="!loginSuccessful">
+	<header>
+		<nav>
+			Visit tracker
+		</nav>
+	</header>
 	<app-login [app]="this"></app-login>
 </div>
 
@@ -24,6 +23,11 @@
 			3. use Agency Reference to insert data to correct Agency Collection in Firestore Database
 -->
 <div *ngIf="loginSuccessful">
+	<header>
+		<nav>
+			Tracking visits for <b>{{agency.name}}</b>
+		</nav>
+	</header>
 	<app-home [agency]="this.agency"></app-home> <!-- Pass the selected agency to the home component-->
 </div>
 

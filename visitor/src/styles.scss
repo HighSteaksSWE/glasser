@@ -20,6 +20,7 @@ $theme: mat-light-theme($primary, $accent);
 $custom-typography: mat-typography-config(
   $font-family: 'Work Sans',
   $headline: mat-typography-level(24px, 30px, 600),
+  $display-1: mat-typography-level(24px, 30px, 300),
   $body-1: mat-typography-level(16px, 24px, 400)
 );
 

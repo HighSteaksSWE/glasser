@@ -1,9 +1,9 @@
 @import '../styles.scss';
 
 header {
-	font-size: mat-font-size($custom-typography, headline);
-	line-height: mat-line-height($custom-typography, headline);
-	font-weight: mat-font-weight($custom-typography, headline);
+	font-size: mat-font-size($custom-typography, display-1);
+	line-height: mat-line-height($custom-typography, display-1);
+	font-weight: mat-font-weight($custom-typography, display-1);
 	background: mat-color($primary);
 	padding: 1em;
 	color: white;
