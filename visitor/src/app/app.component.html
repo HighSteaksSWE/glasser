@@ -25,6 +25,7 @@
 <div *ngIf="loginSuccessful">
 	<header>
 		<nav>
+			<a mat-icon-button  (click)="this.loginSuccessful = false;"><mat-icon aria-hidden="false" aria-label="scan icon">arrow_back</mat-icon></a>
 			Recording visits for <b>{{agency.name}}</b>
 		</nav>
 	</header>
