@@ -19,8 +19,8 @@ $theme: mat-light-theme($primary, $accent);
 // `headlines` and `body-1` levels.
 $custom-typography: mat-typography-config(
   $font-family: 'Work Sans',
-  $headline: mat-typography-level(24px, 30px, 600),
-  $display-1: mat-typography-level(24px, 30px, 300),
+  $headline: mat-typography-level(24px, 30px, 800),
+  $display-1: mat-typography-level(24px, 30px, 400),
   $body-1: mat-typography-level(16px, 24px, 400)
 );
 
