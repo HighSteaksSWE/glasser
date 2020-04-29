@@ -5,6 +5,7 @@ header {
 	line-height: mat-line-height($custom-typography, display-1);
 	font-weight: mat-font-weight($custom-typography, display-1);
 	background: mat-color($primary);
+	text-align: center;
 	padding: 1em;
 	color: white;
 }

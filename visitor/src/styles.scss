@@ -3,8 +3,8 @@
 
 
 // Define your application's custom theme.
-$primary: mat-palette($mat-blue);
-$accent:  mat-palette($mat-green, A200, A100, A400);
+$primary: mat-palette($mat-teal);
+$accent:  mat-palette($mat-light-green, A200, A100, A400);
 $theme: mat-light-theme($primary, $accent);
 
 // Include theme styles for Angular Material components.
@@ -32,7 +32,7 @@ $custom-typography: mat-typography-config(
 html, body { height: 100%; }
 body { 
   font-family: /*"Work Sans",*/ "Helvetica Neue", sans-serif; 
-  max-width: 640px;
+  // max-width: 640px;
   margin: auto;
   background: mat-color($primary, lighter);
 }

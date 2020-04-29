@@ -1,4 +1,4 @@
-<div>
+<div class="container">
   <mat-form-field appearance="outline">
     <mat-label>Agency</mat-label>
     <mat-select [(ngModel)]="selectedAgency" name="agencySelect">
@@ -6,11 +6,9 @@
         <b>{{agency.room}}</b> &nbsp; {{ agency.name }}
       </mat-option>
     </mat-select>
-    <mat-icon matSuffix>home</mat-icon>
+    <!-- <mat-icon matSuffix>home</mat-icon> -->
     <mat-hint>Select your Agency then press Confirm</mat-hint>
   </mat-form-field>
-  <br />
-  <div *ngIf="selectedAgency != null">
-    <a mat-flat-button  (click)="successfulLogin()">Confirm</a>
-  </div>
+  <br>
+  <a mat-raised-button color="primary"  (click)="successfulLogin()">Confirm</a>
 </div>
