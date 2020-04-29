@@ -1,4 +1,5 @@
 import { Component, OnInit , Input} from '@angular/core';
+import { MatSnackBarModule, SimpleSnackBar, MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 
 // Firestore imports 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -8,6 +9,7 @@ import { map } from 'rxjs/operators';
 import * as firebase from 'firebase';
 import { LoginComponent, Agency} from '../login/login.component';
 import { AppComponent } from '../app.component';
+import { NgForm, NgModel } from '@angular/forms';
 
 // interface that defines the agency visit structure
 interface  Visit{
@@ -32,7 +34,7 @@ export class HomeComponent {
   agencyCollection: AngularFirestoreCollection<Visit>;
   visits: Observable<Visit[]>;
   AgencyID: string;
-  code: number;
+  code: string;
   time = firebase.firestore.FieldValue.serverTimestamp();
   groupNumber: number;
 
@@ -59,12 +61,12 @@ export class HomeComponent {
   }
 
   addSingleVisit() {
-    this.afs.collection(this.code.toString()).add({ 'AgencyID': this.agency.id, 'code': this.code, 'Time': this.time });
+    this.afs.collection(this.code.toString() + "d").add({ 'AgencyID': this.agency.id, 'code': this.code + "d", 'Time': this.time });
   }
 
   addGroupVisit(){
       for (var _i = 0; _i < this.groupNumber; _i++) {
-        this.afs.collection(this.groupCode.toString()).add({ 'AgencyID': this.agency.id, 'code': this.groupCode, 'Time': this.time });
+        this.afs.collection(this.groupCode.toString() + "d").add({ 'AgencyID': this.agency.id, 'code': this.groupCode.toString() + "d", 'Time': this.time });
     }
   }
 
