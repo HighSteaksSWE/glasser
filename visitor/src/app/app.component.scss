@@ -9,3 +9,7 @@ header {
 	padding: 1em;
 	color: white;
 }
+
+b {
+	font-weight: mat-font-weight($custom-typography, headline);
+}
