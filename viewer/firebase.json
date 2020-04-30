@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "viewer",
+      "public": "dist/viewer",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

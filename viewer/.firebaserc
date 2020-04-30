@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "glasser-ffb7a": {
+      "hosting": {
+        "viewer": [
+          "glasser-ffb7a"
+        ]
+      }
+    }
+  }
+}
