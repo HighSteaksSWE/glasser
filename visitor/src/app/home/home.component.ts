@@ -30,6 +30,9 @@ export class HomeComponent {
     console.log(e);
   }
 
+  //QR Code scanner
+  scanning: boolean;
+
   // Connect Agency to Firebase collection
   agencyCollection: AngularFirestoreCollection<Visit>;
   visits: Observable<Visit[]>;
@@ -70,4 +73,15 @@ export class HomeComponent {
     }
   }
 
+  scanSuccessHandler(event) {
+    this.code = event;
+  }
+
+  startScan() {
+    this.scanning = true;
+  }
+
+  stopScan() {
+    this.scanning = false;
+  }
 }

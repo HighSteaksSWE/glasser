@@ -21,6 +21,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { AgencyVisitorService } from './services/agency-visitor.service';
 
+// QR Code
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { AgencyVisitorService } from './services/agency-visitor.service';
     FormsModule,
     MatSelectModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ZXingScannerModule
   ],
   providers: [AgencyVisitorService],
   bootstrap: [AppComponent]
