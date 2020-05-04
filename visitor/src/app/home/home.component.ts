@@ -1,5 +1,5 @@
 import { Component, OnInit , Input} from '@angular/core';
-import { MatSnackBarModule, SimpleSnackBar, MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 // Firestore imports 
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -32,6 +32,7 @@ export class HomeComponent {
 
   //QR Code scanner
   scanning: boolean;
+  regex: RegExp;
 
   // Connect Agency to Firebase collection
   agencyCollection: AngularFirestoreCollection<Visit>;
@@ -55,7 +56,9 @@ export class HomeComponent {
 
   @Input() agency: Agency; // Here is a reference to the current agency that is logged in. Properties: name, id ( collection ) , room  
 
-  constructor(private afs: AngularFirestore) {}
+  constructor(private afs: AngularFirestore, private _snackBar: MatSnackBar) {
+    this.regex = /\d{1,5}/;
+  }
 
   ngOnInit() {
     this.agencyCollection = this.afs.collection('Agency1');
@@ -75,6 +78,25 @@ export class HomeComponent {
 
   scanSuccessHandler(event) {
     this.code = event;
+    if (this.code.match(this.regex)) {
+      this.addSingleVisit();
+      this.showSnackBar("Recorded Visit #" + this.code + " Successfully", "Okay", 3000);
+      this.stopScan();
+    }
+    else {
+      this.showSnackBar("QR Code is not the correct format. Try Again", "Okay", 3000);
+    }
+    this.clearForms();
+  }
+
+  showSnackBar(message, action, time) {
+    this._snackBar.open(message, action, { duration: time });
+  }
+
+  clearForms() {
+    this.code = "";
+    this.groupNumber = null;
+    
   }
 
   startScan() {

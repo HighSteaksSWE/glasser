@@ -23,6 +23,7 @@ import { AgencyVisitorService } from './services/agency-visitor.service';
 
 // QR Code
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     MatSelectModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    ZXingScannerModule
+    ZXingScannerModule,
+    MatSnackBarModule
   ],
   providers: [AgencyVisitorService],
   bootstrap: [AppComponent]
