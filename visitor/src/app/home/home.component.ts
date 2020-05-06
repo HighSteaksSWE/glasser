@@ -87,8 +87,11 @@ export class HomeComponent {
   addGroupVisit(){
       for (var _i = 0; _i < this.groupNumber; _i++) {
         this.afs.collection(this.groupCode.toString() + "d").add({ 'AgencyID': this.agency.id, 'code': this.groupCode.toString() + "d", 'Time': this.time });
-        this.showSnackBar("Event with " + this.groupNumber + " guests logged successfully", "OK", 3000);
+        this.afs.collection("visits").doc(this.groupCode.toString() + "d").set({'code': this.groupCode.toString() + "d"});
+    // save all IDs in a collection
+    this.afs.collection("visits").valueChanges().subscribe(val => console.log(val));
     }
+    this.showSnackBar("Event with " + this.groupNumber + " guests logged successfully", "OK", 3000);
   }
 
   scanSuccessHandler(event) {
