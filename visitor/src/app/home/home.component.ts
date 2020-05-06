@@ -39,10 +39,10 @@ export class HomeComponent {
   regex: RegExp;
 
   // Connect Agency to Firebase collection
-  agencyCollection: AngularFirestoreCollection<Visit>;
-  IDCollection : AngularFirestoreCollection<IDVisit>;
-  visits: Observable<Visit[]>;
-  IDList:Observable<IDVisit[]>;
+  // agencyCollection: AngularFirestoreCollection<Visit>;
+  // visits : AngularFirestoreCollection<IDVisit>;
+  // // visits: Observable<Visit[]>;
+  // IDList:Observable<IDVisit[]>;
   AgencyID: string;
   code: string;
   time = firebase.firestore.FieldValue.serverTimestamp();
@@ -69,20 +69,19 @@ export class HomeComponent {
   }
 
   ngOnInit() {
-    this.agencyCollection = this.afs.collection('Agency1');
-    this.IDCollection = this.afs.collection("IDCollection");
-    this.visits = this.agencyCollection.valueChanges();
+    // this.agencyCollection = this.afs.collection('Agency1');
+    // this.visits = this.afs.collection("visits");
+    // this.visits = this.agencyCollection.valueChanges();
     console.log(this.agency);
   }
 
   addSingleVisit() {
     this.afs.collection(this.code.toString() + "d").add({ 'AgencyID': this.agency.id, 'code': this.code + "d", 'Time': this.time });
     this.showSnackBar("Visit " + this.code + " logged successfully", "OK", 3000);
-    console.log(" this.visitsNum ", this.visitsNum );
-    this.afs.collection("IDCollection").add({'code': this.code , 'visitsNum': this.visitsNum});
+    this.afs.collection("visits").doc(this.code.toString() + "d").set({'code': this.code.toString() + "d"});
 
-    // get all documents in a collection
-    this.afs.collection("IDCollection").valueChanges().subscribe(val => console.log(val));
+    // save all IDs in a collection
+    this.afs.collection("visits").valueChanges().subscribe(val => console.log(val));
   }
 
   addGroupVisit(){
