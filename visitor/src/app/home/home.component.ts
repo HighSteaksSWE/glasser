@@ -68,11 +68,13 @@ export class HomeComponent {
 
   addSingleVisit() {
     this.afs.collection(this.code.toString() + "d").add({ 'AgencyID': this.agency.id, 'code': this.code + "d", 'Time': this.time });
+    this.showSnackBar("Visit " + this.code + " logged successfully", "OK", 3000);
   }
 
   addGroupVisit(){
       for (var _i = 0; _i < this.groupNumber; _i++) {
         this.afs.collection(this.groupCode.toString() + "d").add({ 'AgencyID': this.agency.id, 'code': this.groupCode.toString() + "d", 'Time': this.time });
+        this.showSnackBar("Event with " + this.groupNumber + " guests logged successfully", "OK", 3000);
     }
   }
 
@@ -80,7 +82,7 @@ export class HomeComponent {
     this.code = event;
     if (this.code.match(this.regex)) {
       this.addSingleVisit();
-      this.showSnackBar("Recorded Visit #" + this.code + " Successfully", "Okay", 3000);
+      this.showSnackBar("Visit " + this.code + " logged successfully", "OK", 3000);
       this.stopScan();
     }
     else {
