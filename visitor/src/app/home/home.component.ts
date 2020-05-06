@@ -18,6 +18,10 @@ interface  Visit{
   time: Timestamp<any>;
 }
 
+export interface IDVisit { code: string; visitsNum: number; }
+export interface IDVisitID extends IDVisit { id: string; }
+
+
 @Component({ 
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -36,11 +40,15 @@ export class HomeComponent {
 
   // Connect Agency to Firebase collection
   agencyCollection: AngularFirestoreCollection<Visit>;
+  IDCollection : AngularFirestoreCollection<IDVisit>;
   visits: Observable<Visit[]>;
+  IDList:Observable<IDVisit[]>;
   AgencyID: string;
   code: string;
   time = firebase.firestore.FieldValue.serverTimestamp();
   groupNumber: number;
+  visitsNum = 1 ;
+  
 
   // Group code is today's date YYYYMMDDHHmmss
   // example: Apr 29, 2020 at 4:47:35 PM -> 20200429044735 (12 digits)
@@ -62,6 +70,7 @@ export class HomeComponent {
 
   ngOnInit() {
     this.agencyCollection = this.afs.collection('Agency1');
+    this.IDCollection = this.afs.collection("IDCollection");
     this.visits = this.agencyCollection.valueChanges();
     console.log(this.agency);
   }
@@ -69,6 +78,11 @@ export class HomeComponent {
   addSingleVisit() {
     this.afs.collection(this.code.toString() + "d").add({ 'AgencyID': this.agency.id, 'code': this.code + "d", 'Time': this.time });
     this.showSnackBar("Visit " + this.code + " logged successfully", "OK", 3000);
+    console.log(" this.visitsNum ", this.visitsNum );
+    this.afs.collection("IDCollection").add({'code': this.code , 'visitsNum': this.visitsNum});
+
+    // get all documents in a collection
+    this.afs.collection("IDCollection").valueChanges().subscribe(val => console.log(val));
   }
 
   addGroupVisit(){
