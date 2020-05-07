@@ -8,6 +8,7 @@ import { StatsComponent } from './stats/stats.component';
 
 // Material Design
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 // Firebase related imports
 import { AngularFireModule } from '@angular/fire';
@@ -30,7 +31,8 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [ViewerServiceService],
   bootstrap: [AppComponent]

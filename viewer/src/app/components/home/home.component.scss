@@ -49,3 +49,11 @@ p, ul {
     line-height: mat-line-height($custom-typography, body-1);
     color: mat-color($primary, darker);
 }
+
+a {
+    font-size: mat-font-size($custom-typography, caption);
+    font-weight: mat-font-weight($custom-typography, caption);
+    line-height: mat-line-height($custom-typography, caption);
+    text-decoration: underline;
+    color: mat-color($primary, darker);
+}
