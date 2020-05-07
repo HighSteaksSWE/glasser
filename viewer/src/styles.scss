@@ -21,9 +21,9 @@ $theme: mat-light-theme($primary, $accent);
 // `headlines` and `body-1` levels.
 $custom-typography: mat-typography-config(
   $font-family: 'Work Sans',
-  $headline: mat-typography-level(24px, 30px, 800),
-  $display-1: mat-typography-level(24px, 30px, 400),
-  $body-1: mat-typography-level(16px, 24px, 400)
+  $headline: mat-typography-level(32px, 40px, 800),
+  $display-1: mat-typography-level(32px, 40px, 400),
+  $body-1: mat-typography-level(20px, 24px, 400)
 );
 
 // Include non-theme styles for core.
@@ -36,7 +36,7 @@ body {
   font-family: "Work Sans", "Helvetica Neue", sans-serif; 
   // max-width: 640px;
   margin: auto;
-  background: mat-color($primary, lighter);
+  background: white;
 }
 
 mat-form-field {
