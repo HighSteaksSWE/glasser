@@ -1,14 +1,13 @@
-<header>
-    <nav>
-        <img src="../assets/img/Connect-with-us-image.png" alt="G/S Logo" style="max-height:26px;">
-        &nbsp;Visit reports
-    </nav>
-</header>
-
 <!--
 	Shows the login component if the user has not logged in
 -->
 <div *ngIf="!loginSuccessful">
+    <header>
+        <nav>
+            <img src="../assets/img/Connect-with-us-image.png" alt="G/S Logo" style="max-height:26px;">
+            &nbsp;Visit reports
+        </nav>
+    </header>
 	<app-login [app]="this"></app-login>
 </div>
 
@@ -17,6 +16,12 @@
 		When the home component is shown:
 -->
 <div *ngIf="loginSuccessful">
+    <header>
+        <nav>
+            <img src="../assets/img/Connect-with-us-image.png" alt="G/S Logo" style="max-height:26px;">
+            &nbsp;Visit patterns for the last 30 days
+        </nav>
+    </header>
 	<app-home ></app-home> <!-- Pass the selected agency to the home component -->
 </div>
 

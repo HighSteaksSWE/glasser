@@ -1,0 +1,51 @@
+@import '../../../styles.scss'; 
+
+.flexible {
+    display: flex;
+    flex-flow: row wrap; 
+    justify-content: space-around;
+    margin: auto 0.75em auto 0.75em;
+}
+
+.big-container {
+    padding: 4em;
+    // margin-right: 0.75em;
+    // margin-bottom: 0.75em;
+    background: mat-color($primary, 50);
+    flex-grow: 2;
+  }
+
+.big-headline {
+    font-size: mat-font-size($custom-typography, headline);
+    font-weight: mat-font-weight($custom-typography, headline);
+    line-height: mat-line-height($custom-typography, headline);
+    color: mat-color($primary, darker);
+}
+
+.big-display {
+    font-size: mat-font-size($custom-typography, display-1);
+    font-weight: mat-font-weight($custom-typography, display-1);
+    line-height: mat-line-height($custom-typography, display-1);
+    color: mat-color($primary, darker);
+}
+
+.small-container {
+    padding: 4em;
+    background: mat-color($primary, 50);
+    align-items: center;
+    justify-content: center;
+}
+
+.small-headline {
+    font-size: mat-font-size($custom-typography, display-2);
+    font-weight: mat-font-weight($custom-typography, display-2);
+    line-height: mat-line-height($custom-typography, display-2);
+    color: mat-color($primary, darker);
+}
+
+p, ul {
+    font-size: mat-font-size($custom-typography, body-1);
+    font-weight: mat-font-weight($custom-typography, body-1);
+    line-height: mat-line-height($custom-typography, body-1);
+    color: mat-color($primary, darker);
+}
