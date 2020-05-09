@@ -40,17 +40,23 @@ export class HomeComponent implements OnInit {
    visits: Observable<Visit[]>;
    totalNumVisits = 0;
    agencyCounterPerID=0;
-   counterArray ={1:0, 2:0 , 3:0}; //  key represents duplicate or triplit of agencies, value = their number
+  //  counterArray ={1:0, 2:0 , 3:0}; //  key represents duplicate or triplit of agencies, value = their number
+   // 32 max agency limit per visit - hopefully no one should ever reach this
+   counterArray = [0,0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]   
+   multiples = 0;
    mostCommonPair = {};
    mostCommonTriplet = {};
    agencyList = new Array(); 
    IDField: Observable<any>;
 
+   // Percentage calculations
+   pctMultipleAgencyVisits: number;
+
   constructor(private afs: AngularFirestore) { }
 
   ngOnInit(): void {
+    console.log("a");
     this.getStatistics();
-    
   }
 
   getStatistics(): void{
@@ -95,6 +101,13 @@ export class HomeComponent implements OnInit {
               this.mostCommonTriplet[this.agencyList[i]] +=1; 
             }
           }
+          for (var i=2; i<this.counterArray.length; i++) {
+           this.multiples+= this.counterArray[i];
+          }
+
+          // percentages
+          this.pctMultipleAgencyVisits = this.totalNumVisits / this.counterArray[2];//this.multiples;
+          console.log(this.pctMultipleAgencyVisits);
 
           this.agencyCounterPerID =0;
           //empty the array
@@ -102,10 +115,11 @@ export class HomeComponent implements OnInit {
       });
     });
   });
+
   
-  console.log(this.counterArray[1] , " visit for " , 1 , "agencies");
-  console.log(this.counterArray[2] , " visit for " , 2 , "agencies");
-  console.log(this.counterArray[3] , " visit for " , 3 , "agencies");
+  // console.log(this.counterArray[1] , " visit for " , 1 , "agencies");
+  // console.log(this.counterArray[2] , " visit for " , 2 , "agencies");
+  // console.log(this.counterArray[3] , " visit for " , 3 , "agencies");
   console.log("this.mostCommonTriplet", this.mostCommonTriplet);
   console.log("this.mostCommonPair", this.mostCommonPair);
 
