@@ -8,14 +8,21 @@ import { map } from 'rxjs/operators';
 import * as firebase from 'firebase';
 import { NgForm, NgModel } from '@angular/forms';
 
+/*
 
+TODO
+1. identify group visits and exclude them from the getStatistics()
+2. 
+3.
+
+ */
 
 interface  Visit{
   code: number;
 }
 // interface that defines the agency visit structure
 interface  AencyVisit{
-  ID: string;
+  AgencyID: string;
   code: string;
   time: Timestamp<any>;
 }
@@ -32,11 +39,12 @@ export class HomeComponent implements OnInit {
    visitCollection: AngularFirestoreCollection<Visit>;
    visits: Observable<Visit[]>;
    totalNumVisits = 0;
-   agencyCounter=0;
+   agencyCounterPerID=0;
    counterArray ={1:0, 2:0 , 3:0}; //  key represents duplicate or triplit of agencies, value = their number
    mostCommonPair = {};
    mostCommonTriplet = {};
    agencyList = new Array(); 
+   IDField: Observable<any>;
 
   constructor(private afs: AngularFirestore) { }
 
@@ -50,7 +58,7 @@ export class HomeComponent implements OnInit {
     visitArray.subscribe( payload => {
       payload.forEach( item => {
         const visitID = item.payload.doc.data() as Visit;
-        console.log("visitID", visitID.code);
+        //console.log("visitID = ", visitID);
 
         
         // getting visited frequencies
@@ -58,25 +66,37 @@ export class HomeComponent implements OnInit {
         visitedAgencies.subscribe( payload => {
           payload.forEach( item => {
             this.totalNumVisits+=1;
-            this.agencyCounter+=1;
+            this.agencyCounterPerID+=1;
             const agencyVisit = item.payload.doc.data() as AencyVisit; 
-            this.agencyList.push(agencyVisit.ID);
-            //console.log("agencyVisit", agencyVisit);          
+            this.agencyList.push(agencyVisit.AgencyID);
+            //console.log("agencyList", this.agencyList);          
             
           });
-          //console.log(this.counterArray[this.agencyCounter]+=1,"visit for ", this.agencyCounter , "agencies" );
-          this.counterArray[this.agencyCounter]+=1;
+          
+          this.counterArray[this.agencyCounterPerID]+=1;
+          //console.log(this.counterArray[this.agencyCounterPerID],"visits for ", this.agencyCounterPerID , "agencies" );
 
-          // getting visited Agenccies based on the agencyCounter
+          // getting visited Agenccies based on the agencyCounterPerID
           for(var i = 0;i<this.agencyList.length;i++) { 
-            if (this.agencyCounter == 2) {
-              this.mostCommonPair[this.agencyList[i]] +=1;
-            } else if (this.agencyCounter == 3){
+            if (this.agencyCounterPerID == 2) {
+              var result2 = this.agencyList.hasOwnProperty(this.agencyList[i].toString);
+              console.log("result for common pair = ", result2)
+              if (result2 == false){
+                this.mostCommonPair[this.agencyList[i].toString] =1;
+              }
+              this.mostCommonPair[this.agencyList[i].toString] +=1;
+              console.log("first if , agencyList[i] =", this.agencyList[i],  this.mostCommonPair[this.agencyList[i].toString])
+            } else if (this.agencyCounterPerID == 3){
+              var result3 = this.agencyList.hasOwnProperty(this.agencyList[i].toString);
+              if (result3 == false){
+                console.log("result for common triplet = ", result3)
+                this.mostCommonTriplet[this.agencyList[i].toString] =1;
+              }
               this.mostCommonTriplet[this.agencyList[i]] +=1; 
             }
           }
 
-          this.agencyCounter =0;
+          this.agencyCounterPerID =0;
           //empty the array
           this.agencyList.length = 0;
       });
