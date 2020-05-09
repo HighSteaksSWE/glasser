@@ -57,12 +57,12 @@ export class HomeComponent implements OnInit {
     const visitArray = this.afs.collection("visits").snapshotChanges();
     visitArray.subscribe( payload => {
       payload.forEach( item => {
-        const visitID = item.payload.doc.data() as Visit;
-        //console.log("visitID = ", visitID);
+        const visit = item.payload.doc.data() as Visit;
+        console.log("visit = ", visit);
 
         
         // getting visited frequencies
-        const visitedAgencies = this.afs.collection(visitID.code.toString()).snapshotChanges();
+        const visitedAgencies = this.afs.collection(visit.code.toString()).snapshotChanges();
         visitedAgencies.subscribe( payload => {
           payload.forEach( item => {
             this.totalNumVisits+=1;
