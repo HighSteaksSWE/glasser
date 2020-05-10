@@ -12,7 +12,7 @@ import { NgForm, NgModel } from '@angular/forms';
 
 TODO
 1. identify group visits and exclude them from the getStatistics()
-2. 
+2. correct the common pair and common triplet algorithm
 3.
 
  */
@@ -38,14 +38,24 @@ export class HomeComponent implements OnInit {
    // Connect Agency to Firebase collection
    visitCollection: AngularFirestoreCollection<Visit>;
    visits: Observable<Visit[]>;
+
+   // Statistics fields
    totalNumVisits = 0;
+   totalNumPairVisits = 0 ;
+   percentageOfPairVisits = 0;
+   totalNumTripletVisits = 0;
+   percentageOfTripletVisits = 0;
+   commonPair = new Array();
+   commonTriplet = new Array();
+
    agencyCounterPerID=0;
   //  counterArray ={1:0, 2:0 , 3:0}; //  key represents duplicate or triplit of agencies, value = their number
    // 32 max agency limit per visit - hopefully no one should ever reach this
    counterArray = [0,0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]   
    multiples = 0;
-   mostCommonPair = {};
-   mostCommonTriplet = {};
+   //  mostCommonPairList and mostCommonTripletList will be used to filter the most common pair and triplet agencies
+   mostCommonPairList = {"DEMO-B-Geese":1, "DEMO-A-Berges":1, "DEMO-C1-Gentle":1, "DEMO-C2-Crunke":1,"DEMO-C3-Girls":1, "DEMO-D-Literacy":1, "DEMO-E-Life":1,"DEMO-F-Pools":1};
+   mostCommonTripletList = {"DEMO-B-Geese":1, "DEMO-A-Berges":1, "DEMO-C1-Gentle":1, "DEMO-C2-Crunke":1,"DEMO-C3-Girls":1, "DEMO-D-Literacy":1, "DEMO-E-Life":1,"DEMO-F-Pools":1};
    agencyList = new Array(); 
    IDField: Observable<any>;
 
@@ -64,7 +74,7 @@ export class HomeComponent implements OnInit {
     visitArray.subscribe( payload => {
       payload.forEach( item => {
         const visit = item.payload.doc.data() as Visit;
-        console.log("visit = ", visit);
+        //console.log("visit = ", visit);
 
         
         // getting visited frequencies
@@ -80,25 +90,18 @@ export class HomeComponent implements OnInit {
           });
           
           this.counterArray[this.agencyCounterPerID]+=1;
-          //console.log(this.counterArray[this.agencyCounterPerID],"visits for ", this.agencyCounterPerID , "agencies" );
+          
 
           // getting visited Agenccies based on the agencyCounterPerID
           for(var i = 0;i<this.agencyList.length;i++) { 
             if (this.agencyCounterPerID == 2) {
-              var result2 = this.agencyList.hasOwnProperty(this.agencyList[i].toString);
-              console.log("result for common pair = ", result2)
-              if (result2 == false){
-                this.mostCommonPair[this.agencyList[i].toString] =1;
-              }
-              this.mostCommonPair[this.agencyList[i].toString] +=1;
-              console.log("first if , agencyList[i] =", this.agencyList[i],  this.mostCommonPair[this.agencyList[i].toString])
+              this.totalNumPairVisits +=1;
+              var result2 = this.agencyList.includes(this.agencyList[i]);
+              this.mostCommonPairList[this.agencyList[i]] +=1;
             } else if (this.agencyCounterPerID == 3){
-              var result3 = this.agencyList.hasOwnProperty(this.agencyList[i].toString);
-              if (result3 == false){
-                console.log("result for common triplet = ", result3)
-                this.mostCommonTriplet[this.agencyList[i].toString] =1;
-              }
-              this.mostCommonTriplet[this.agencyList[i]] +=1; 
+              this.totalNumTripletVisits +=1 ;
+              var result3 = this.agencyList.includes(this.agencyList[i]);
+              this.mostCommonTripletList[this.agencyList[i]] +=1; 
             }
           }
           for (var i=2; i<this.counterArray.length; i++) {
@@ -107,21 +110,30 @@ export class HomeComponent implements OnInit {
 
           // percentages
           this.pctMultipleAgencyVisits = this.totalNumVisits / this.counterArray[2];//this.multiples;
-          console.log(this.pctMultipleAgencyVisits);
-
+          //console.log(this.pctMultipleAgencyVisits);
+          this.percentageOfPairVisits = this.totalNumPairVisits / this.totalNumPairVisits * 100 ;
+          this.percentageOfTripletVisits = this.totalNumTripletVisits / this.totalNumVisits * 100;
+          this.commonPair.push(this.agencyList[0]);
+          this.commonPair.push(this.agencyList[1]);
+          this.commonTriplet.push(this.agencyList[0]);
+          this.commonTriplet.push(this.agencyList[0]);
+          console.log("this.commonPair =", this.commonPair , "this.commonTriplet = ", this.commonTriplet)
+         
           this.agencyCounterPerID =0;
           //empty the array
           this.agencyList.length = 0;
+
+      
       });
     });
+  
   });
 
   
   // console.log(this.counterArray[1] , " visit for " , 1 , "agencies");
   // console.log(this.counterArray[2] , " visit for " , 2 , "agencies");
   // console.log(this.counterArray[3] , " visit for " , 3 , "agencies");
-  console.log("this.mostCommonTriplet", this.mostCommonTriplet);
-  console.log("this.mostCommonPair", this.mostCommonPair);
+
 
  }
 }
