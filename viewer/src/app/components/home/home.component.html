@@ -3,15 +3,15 @@
 <div class="flexible">
     <div class="big-container">
         <p>
-        <span class="big-headline">{{counterArray[2]}} ({{pctMultipleAgencyVisits}}%) </span><span class="big-display">of all</span><span class="big-headline"> {{totalNumVisits}} visits </span><br>
+          <span class="big-headline">{{totalMultipleVisits}} ({{formatPercent(totalMultipleVisits / totalNumVisits * 100)}}%) </span><span class="big-display">of all</span><span class="big-headline"> {{totalNumVisits}} visits </span><br>
         <span class="big-display">involved multiple agencies</span>
         </p>
         <p>Of those visits:</p> 
             <ul>
-                <li><b>61% </b> were to <b>2</b> agencies</li>
-                <li><b>28% </b> were to <b>3</b> agencies</li>
-                <li><b>7% </b> were to <b>4</b> agencies</li>
-                <li><b>4% </b> were to <b>5 or more</b> agencies</li>
+                <li><b>{{totalNumPairVisits}} ({{formatPercent(percentageOfPairVisits)}}%)</b> were to <b>2</b> agencies</li>
+                <li><b>{{totalNumTripletVisits}} ({{formatPercent(percentageOfTripletVisits)}}%) </b> were to <b>3</b> agencies</li>
+                <li><b>{{totalNum4Visits}} ({{formatPercent(percentageOf4Visits)}}%) </b> were to <b>4</b> agencies</li>
+                <li><b>{{totalNum5PlusVisits}} ({{formatPercent(percentageOf5PlusVisits)}}%) </b> were to <b>5 or more</b> agencies</li>
             </ul>
         <a>download all visit data ></a>
     </div>
@@ -21,8 +21,8 @@
             <span class="small-headline">Most popular pair</span>
         </p>
                 <ul>
-                    <li><b>B</b>&ensp;Geese Unlimited</li>
-                    <li><b>C3</b>&ensp;Girls with High Self-Esteem</li>
+                  <li><b>B</b>{{mostCommonPairList[0]}}</li>
+                  <li><b>C3</b>&ensp;{{mostCommonPairList[1]}}</li>
                 </ul>
         <p>
         <a>download all pairing data ></a>

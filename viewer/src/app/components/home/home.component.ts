@@ -40,11 +40,16 @@ export class HomeComponent implements OnInit {
    visits: Observable<Visit[]>;
 
    // Statistics fields
-   totalNumVisits = 0;
+  totalNumVisits = 0;
+  totalMultipleVisits = 0;
    totalNumPairVisits = 0 ;
    percentageOfPairVisits = 0;
    totalNumTripletVisits = 0;
-   percentageOfTripletVisits = 0;
+    percentageOfTripletVisits = 0;
+  totalNum5PlusVisits = 0;
+  percentageOf5PlusVisits = 0;
+  totalNum4Visits = 0;
+  percentageOf4Visits = 0;
    commonPair = new Array();
    commonTriplet = new Array();
 
@@ -71,48 +76,62 @@ export class HomeComponent implements OnInit {
 
   getStatistics(): void{
     const visitArray = this.afs.collection("visits").snapshotChanges();
-    visitArray.subscribe( payload => {
+
+    visitArray.subscribe(payload => {
+      this.totalNumVisits = 0;
+      this.totalNumPairVisits = 0;
+      this.percentageOfPairVisits = 0;
+      this.totalNumTripletVisits = 0;
+      this.percentageOfTripletVisits = 0;
+      this.totalNum5PlusVisits = 0;
+      this.percentageOf5PlusVisits = 0;
+      this.totalNum4Visits = 0;
+      this.percentageOf4Visits = 0;
+
       payload.forEach( item => {
         const visit = item.payload.doc.data() as Visit;
         //console.log("visit = ", visit);
-
+        this.totalNumVisits += 1;
         
         // getting visited frequencies
         const visitedAgencies = this.afs.collection(visit.code.toString()).snapshotChanges();
-        visitedAgencies.subscribe( payload => {
+        visitedAgencies.subscribe(payload => {
+
+
+          this.agencyCounterPerID = payload.length;
           payload.forEach( item => {
-            this.totalNumVisits+=1;
-            this.agencyCounterPerID+=1;
             const agencyVisit = item.payload.doc.data() as AencyVisit; 
             this.agencyList.push(agencyVisit.AgencyID);
             //console.log("agencyList", this.agencyList);          
-            
           });
           
           this.counterArray[this.agencyCounterPerID]+=1;
-          
-
-          // getting visited Agenccies based on the agencyCounterPerID
-          for(var i = 0;i<this.agencyList.length;i++) { 
-            if (this.agencyCounterPerID == 2) {
-              this.totalNumPairVisits +=1;
-              var result2 = this.agencyList.includes(this.agencyList[i]);
-              this.mostCommonPairList[this.agencyList[i]] +=1;
-            } else if (this.agencyCounterPerID == 3){
-              this.totalNumTripletVisits +=1 ;
-              var result3 = this.agencyList.includes(this.agencyList[i]);
-              this.mostCommonTripletList[this.agencyList[i]] +=1; 
-            }
+          if (this.agencyCounterPerID == 2) {
+            this.totalNumPairVisits += 1;
+            var result2 = this.agencyList.includes(this.agencyList[i]);
+            this.mostCommonPairList[this.agencyList[i]] += 1;
+          } else if (this.agencyCounterPerID == 3) {
+            this.totalNumTripletVisits += 1;
+            var result3 = this.agencyList.includes(this.agencyList[i]);
+            this.mostCommonTripletList[this.agencyList[i]] += 1;
+          } else if (this.agencyCounterPerID == 4) {
+            this.totalNum4Visits += 1;
+          } else if (this.agencyCounterPerID >= 5) {
+            this.totalNum5PlusVisits += 1;
           }
+
           for (var i=2; i<this.counterArray.length; i++) {
            this.multiples+= this.counterArray[i];
           }
 
           // percentages
           this.pctMultipleAgencyVisits = this.totalNumVisits / this.counterArray[2];//this.multiples;
+          this.totalMultipleVisits = this.totalNumPairVisits + this.totalNumTripletVisits + this.totalNum4Visits + this.totalNum5PlusVisits;
           //console.log(this.pctMultipleAgencyVisits);
-          this.percentageOfPairVisits = this.totalNumPairVisits / this.totalNumPairVisits * 100 ;
+          this.percentageOfPairVisits = this.totalNumPairVisits / this.totalNumVisits * 100 ;
           this.percentageOfTripletVisits = this.totalNumTripletVisits / this.totalNumVisits * 100;
+          this.percentageOf4Visits = this.totalNum4Visits / this.totalNumVisits * 100;
+          this.percentageOf5PlusVisits = this.totalNum5PlusVisits / this.totalNumVisits * 100;
           this.commonPair.push(this.agencyList[0]);
           this.commonPair.push(this.agencyList[1]);
           this.commonTriplet.push(this.agencyList[0]);
@@ -124,16 +143,18 @@ export class HomeComponent implements OnInit {
           this.agencyList.length = 0;
 
       
-      });
+        });
+
+        
     });
   
   });
-
-  
   // console.log(this.counterArray[1] , " visit for " , 1 , "agencies");
   // console.log(this.counterArray[2] , " visit for " , 2 , "agencies");
   // console.log(this.counterArray[3] , " visit for " , 3 , "agencies");
+  }
 
-
- }
+  formatPercent(num) {
+    return Math.round(num * 100) / 100;
+  }
 }
