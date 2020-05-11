@@ -128,10 +128,10 @@ export class HomeComponent implements OnInit {
           this.pctMultipleAgencyVisits = this.totalNumVisits / this.counterArray[2];//this.multiples;
           this.totalMultipleVisits = this.totalNumPairVisits + this.totalNumTripletVisits + this.totalNum4Visits + this.totalNum5PlusVisits;
           //console.log(this.pctMultipleAgencyVisits);
-          this.percentageOfPairVisits = this.totalNumPairVisits / this.totalNumVisits * 100 ;
-          this.percentageOfTripletVisits = this.totalNumTripletVisits / this.totalNumVisits * 100;
-          this.percentageOf4Visits = this.totalNum4Visits / this.totalNumVisits * 100;
-          this.percentageOf5PlusVisits = this.totalNum5PlusVisits / this.totalNumVisits * 100;
+          this.percentageOfPairVisits = this.totalNumPairVisits / this.totalMultipleVisits * 100 ;
+          this.percentageOfTripletVisits = this.totalNumTripletVisits / this.totalMultipleVisits * 100;
+          this.percentageOf4Visits = this.totalNum4Visits / this.totalMultipleVisits * 100;
+          this.percentageOf5PlusVisits = this.totalNum5PlusVisits / this.totalMultipleVisits * 100;
           this.commonPair.push(this.agencyList[0]);
           this.commonPair.push(this.agencyList[1]);
           this.commonTriplet.push(this.agencyList[0]);
