@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\viewer",
+    "\\viewer\\src",
+    "\\viewer\\src\\app",
+    "\\viewer\\src\\app\\components",
+    "\\viewer\\src\\app\\components\\home"
+  ],
+  "SelectedNode": "\\viewer\\src\\app\\components\\home\\home.component.spec.ts",
+  "PreviewInSolutionExplorer": false
+}

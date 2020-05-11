@@ -9,3 +9,7 @@ header {
 	padding: 1em;
 	color: mat-color($primary);
 }
+
+#container {
+  background: mat-color($primary, 50);
+}
