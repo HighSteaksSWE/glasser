@@ -1,5 +1,7 @@
 # Visit tracker and aggregator for the [Glasser/Schoenbaum Human Services Center](https://gs-humanservices.org/)
 
+***[Watch the video](https://spark.adobe.com/video/OFfjgveC9u6eK)***
+
 Glasser/Schoenbaum provides a home to dozens of non-profit organizations across its sprawling campus of over 15 different buildings. Unlike similar non-profit centers that are a single building with a centralized circulation desk, individuals and families obtaining services from a Glasser-based nonprofit agency go directly to the building of that agency. This is excellent for convenience but makes it difficult to gather accurate data regarding campus visits and agency collaboration initiatives.
 
 Our prototype software aims to solve this problem in three parts:
