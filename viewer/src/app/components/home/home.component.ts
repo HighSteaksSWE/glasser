@@ -9,11 +9,20 @@ import * as firebase from 'firebase';
 import { NgForm, NgModel } from '@angular/forms';
 
 /*
+ getStatistics function:
+
+The goal of this function is to iterate through the database and get the required statistics.
+The structure of the database:
+  visits IDs are stored as collections, files, in the firestore database.
+  Visits of the same ID are stored as documents inside each collection.
+The function iterates through each collection, ID,  and counts how many visits are stored in each ID,
+ then it increments the AgencyCounter for each agecny that was detected in the collection.
+The iteration over collections and documents in the database is done by using the "payload.forEach" method
 
 TODO
-1. identify group visits and exclude them from the getStatistics()
-2. correct the common pair and common triplet algorithm
-3.
+1. Identify group visits and exclude them from the getStatistics()
+2. correct the common pair and common triplet algorithm. Agencies should be sorted based on how many times 
+   they appreared in the pair or triplet visits.
 
  */
 
