@@ -69,29 +69,29 @@ export class HomeComponent {
   }
 
   ngOnInit() {
-    // this.agencyCollection = this.afs.collection('Agency1');
-    // this.visits = this.afs.collection("visits");
-    // this.visits = this.agencyCollection.valueChanges();
-    console.log(this.agency);
   }
 
   addSingleVisit() {
-    this.afs.collection(this.code.toString() + "d").add({ 'AgencyID': this.agency.id, 'code': this.code + "d", 'Time': this.time });
-    this.showSnackBar("Visit " + this.code + " logged successfully", "OK", 3000);
-    this.afs.collection("visits").doc(this.code.toString() + "d").set({'code': this.code.toString() + "d"});
+	if (this.code != null && this.code != ""){
+		this.afs.collection(this.code.toString() + "d").add({ 'AgencyID': this.agency.id, 'code': this.code + "d", 'Time': this.time });
+		this.showSnackBar("Visit " + this.code + " logged successfully", "OK", 3000);
+		this.afs.collection("visits").doc(this.code.toString() + "d").set({'code': this.code.toString() + "d"});
 
-    // save all IDs in a collection
-    this.afs.collection("visits").valueChanges().subscribe(val => console.log(val));
+		// save all IDs in a collection
+		this.afs.collection("visits").valueChanges().subscribe(val => console.log(val));
+	}
   }
 
   addGroupVisit(){
+	if (this.groupNumber != null && this.groupNumber != 0){
       for (var _i = 0; _i < this.groupNumber; _i++) {
         this.afs.collection(this.groupCode.toString() + "d").add({ 'AgencyID': this.agency.id, 'code': this.groupCode.toString() + "d", 'Time': this.time });
         this.afs.collection("visits").doc(this.groupCode.toString() + "d").set({'code': this.groupCode.toString() + "d"});
-    // save all IDs in a collection
-    this.afs.collection("visits").valueChanges().subscribe(val => console.log(val));
-    }
-    this.showSnackBar("Event with " + this.groupNumber + " guests logged successfully", "OK", 3000);
+      // save all IDs in a collection
+        this.afs.collection("visits").valueChanges().subscribe(val => console.log(val));
+      }
+      this.showSnackBar("Event with " + this.groupNumber + " guests logged successfully", "OK", 3000);
+	}
   }
 
   scanSuccessHandler(event) {
@@ -112,9 +112,8 @@ export class HomeComponent {
   }
 
   clearForms() {
-    this.code = "";
+    this.code = null;
     this.groupNumber = null;
-    
   }
 
   startScan() {
