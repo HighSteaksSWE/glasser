@@ -9,6 +9,7 @@ import { Observable, of, from, Timestamp } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as firebase from 'firebase';
 
+
 export interface Agency {
   name: string;
   room: string;
@@ -33,11 +34,21 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.agencyCollection = this.afs.collection('agencies');
     this.agencies = this.agencyCollection.valueChanges();
+	// this.selectedAgency = this.agencies[0];
+	console.log(this.agencies);
   }
 
   successfulLogin() {
     this.app.agency = this.selectedAgency;
-    this.app.loginSuccessful = true;
+	console.log(this.agencies);
+	if (this.selectedAgency != null){
+		this.app.loginSuccessful = true;
+		console.log("valid");
+	}
+	else{
+		this.app.loginSuccessful = false;
+		console.log("invalid");
+	}
   }
 
   log(e) {
