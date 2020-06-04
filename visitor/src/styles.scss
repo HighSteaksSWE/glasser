@@ -1,0 +1,43 @@
+// Import library functions for theme creation.
+@import '~@angular/material/theming';
+
+
+// Define your application's custom theme.
+// $primary: mat-palette($mat-teal);
+$primary: mat-palette($mat-blue, 800);
+$accent:  mat-palette($mat-light-green, A200, A100, A400);
+$theme: mat-light-theme($primary, $accent);
+
+// Include theme styles for Angular Material components.
+@include angular-material-theme($theme);
+
+/* You can add global styles to this file, and also import other style files */
+// * {
+//     font-family: 'Work Sans', sans-serif;
+//    }
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$custom-typography: mat-typography-config(
+  $font-family: 'Work Sans',
+  $headline: mat-typography-level(24px, 30px, 800),
+  $display-1: mat-typography-level(24px, 30px, 400),
+  $body-1: mat-typography-level(16px, 24px, 400)
+);
+
+// Include non-theme styles for core.
+@include mat-core($custom-typography);
+
+// @include angular-material-typography($custom-typography);
+
+html, body { height: 100%; }
+body { 
+  font-family: /*"Work Sans",*/ "Helvetica Neue", sans-serif; 
+  // max-width: 640px;
+  margin: auto;
+  background: mat-color($primary, lighter);
+}
+
+mat-form-field {
+    width: 70%;
+}

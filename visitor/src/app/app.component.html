@@ -1,0 +1,35 @@
+<!--
+	Shows the login component if the user has not logged in
+		When the user logs in:
+			1. Select an Agency
+			2. Press Confirm -> Change the 'loginSuccesful' variable to true, store selected agency info in 'agency'
+-->
+<div *ngIf="!loginSuccessful">
+	<header>
+		<nav>
+			Visit tracker
+		</nav>
+	</header>
+	<app-login [app]="this"></app-login>
+</div>
+
+<!--
+	Shows the home component if the user has logged in
+		When the home component is shown:
+			1. Display the agency the user has selected
+		When the user scans a visit:
+			1. Submit button pressed
+			2. Call addSingleVisit()
+			3. use Agency Reference to insert data to correct Agency Collection in Firestore Database
+-->
+<div *ngIf="loginSuccessful">
+	<header>
+		<nav>
+			<a mat-icon-button  (click)="this.loginSuccessful = false;"><mat-icon aria-hidden="false" aria-label="scan icon">arrow_back</mat-icon></a>
+			Recording visits for <b>{{agency.name}}</b>
+		</nav>
+	</header>
+	<app-home [agency]="this.agency"></app-home> <!-- Pass the selected agency to the home component-->
+</div>
+
+<router-outlet></router-outlet>
