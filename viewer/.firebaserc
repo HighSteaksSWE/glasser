@@ -3,9 +3,12 @@
     "glasser-ffb7a": {
       "hosting": {
         "viewer": [
-          "glasser-ffb7a"
+          "glasser-viewer"
         ]
       }
     }
+  },
+  "projects": {
+    "default": "glasser-ffb7a"
   }
 }
