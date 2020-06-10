@@ -34,7 +34,7 @@ interface  Visit{
 interface  AencyVisit{
   AgencyID: string;
   code: string;
-  Time: Timestamp<String>;
+  Time: any;
 }
 
 
