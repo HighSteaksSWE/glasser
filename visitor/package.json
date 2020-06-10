@@ -25,6 +25,7 @@
     "@zxing/ngx-scanner": "^3.0.0",
     "firebase": "^7.14.1",
     "font-awesome": "^4.7.0",
+    "hosting": "0.0.2",
     "jquery": "^3.5.1",
     "materialize-css": "^1.0.0",
     "rxjs": "~6.5.4",

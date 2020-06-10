@@ -85,13 +85,15 @@ export class HomeComponent {
   addGroupVisit(){
 	if (this.groupNumber != null && this.groupNumber != 0){
       for (var _i = 0; _i < this.groupNumber; _i++) {
-        this.afs.collection(this.groupCode.toString() + "d").add({ 'AgencyID': this.agency.id, 'code': this.groupCode.toString() + "d", 'Time': this.time });
+        this.afs.collection((this.groupCode + _i).toString() + "d").add({ 'AgencyID': this.agency.id, 'code': (this.groupCode + _i).toString() + "d", 'Time': this.time });
+		//this.afs.collection(this.groupCode.toString() + "d").add({ 'AgencyID': this.agency.id, 'code': this.groupCode.toString() + "d", 'Time': this.time });
         this.afs.collection("visits").doc(this.groupCode.toString() + "d").set({'code': this.groupCode.toString() + "d"});
       // save all IDs in a collection
         this.afs.collection("visits").valueChanges().subscribe(val => console.log(val));
       }
       this.showSnackBar("Event with " + this.groupNumber + " guests logged successfully", "OK", 3000);
 	}
+	this.groupCode = this.groupCode + (this.groupNumber + 1);
   }
 
   scanSuccessHandler(event) {

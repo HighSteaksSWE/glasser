@@ -1,0 +1,15 @@
+@import '../styles.scss';
+
+header {
+	font-size: mat-font-size($custom-typography, display-1);
+	line-height: mat-line-height($custom-typography, display-1);
+	font-weight: mat-font-weight($custom-typography, display-1);
+	background: white;
+	// text-align: center;
+	padding: 1em;
+	color: mat-color($primary);
+}
+
+#container {
+  background: mat-color($primary, 50);
+}

@@ -1,0 +1,44 @@
+<!-- ALL HARDCODED PLACEHOLDER DATA -->
+
+<div class="flexible">
+    <div class="big-container">
+        <p>
+          <span class="big-headline">{{totalMultipleVisits}} ({{formatPercent(totalMultipleVisits / totalNumVisits * 100)}}%) </span><span class="big-display">of all</span><span class="big-headline"> {{totalNumVisits}} visits </span><br>
+        <span class="big-display">involved multiple agencies</span>
+        </p>
+        <p>Of those visits:</p>
+            <ul>
+                <li><b>{{totalNumPairVisits}} ({{formatPercent(percentageOfPairVisits)}}%)</b> were to <b>2</b> agencies</li>
+                <li><b>{{totalNumTripletVisits}} ({{formatPercent(percentageOfTripletVisits)}}%) </b> were to <b>3</b> agencies</li>
+                <li><b>{{totalNum4Visits}} ({{formatPercent(percentageOf4Visits)}}%) </b> were to <b>4</b> agencies</li>
+                <li><b>{{totalNum5PlusVisits}} ({{formatPercent(percentageOf5PlusVisits)}}%) </b> were to <b>5 or more</b> agencies</li>
+			</ul>
+    </div>
+    
+    <div class="small-container">
+        <p>
+            <span class="small-headline">Most common pairs</span>
+        </p>
+                <ul>
+                  <li>{{commonPairs[0]}}</li>
+                  <li>{{commonPairs[1]}}</li>
+                </ul>
+        <p>
+        <br>
+        <br>
+            <span class="small-headline">Most common triplets</span>
+        </p>
+                <ul>
+                    <li>{{commonTriplets[0]}}</li>
+                    <li>{{commonTriplets[1]}}</li>
+                 </ul>
+    </div>
+
+    <div class="big-container">
+        <p>
+        <span class="big-headline">{{mostCommonTime[0]}}</span><br>
+        <span class="big-display">Busiest hour of the week</span>
+        </p>
+    </div>
+</div>
+
